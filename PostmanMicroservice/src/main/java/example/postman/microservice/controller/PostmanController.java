@@ -29,6 +29,7 @@ public class PostmanController {
 
     @GetMapping("/deliveredLettersCount")
     public ResponseEntity<Integer> deliverLettersCount(){
+        System.out.println("deliverLettersCount mapping works ....");
         return ResponseEntity.ok().body(new Random().nextInt(100));
     }
 

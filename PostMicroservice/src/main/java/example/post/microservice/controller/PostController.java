@@ -15,6 +15,7 @@ public class PostController {
 
     @GetMapping("/availableLetters")
     public ResponseEntity<String> availableLetters(){
+        System.out.println("availableLetters mapping works ....");
         return ResponseEntity.ok().body("[Letter1, Letter2, Letter3]");
     }
 
