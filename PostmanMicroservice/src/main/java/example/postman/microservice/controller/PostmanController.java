@@ -1,6 +1,7 @@
 package example.postman.microservice.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import example.postman.microservice.feignClient.PostMicroserviceFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +16,15 @@ public class PostmanController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private PostMicroserviceFeignClient postMicroserviceFeignClient;
+
 
     @GetMapping("/getAvailableLettersFromPost")
     @HystrixCommand(fallbackMethod = "getAvailableLettersFromPostFailedMethod")
     public ResponseEntity<String> getAvailableLettersFromPost(){
-        String result = restTemplate.getForObject("http://postMicroservice/availableLetters", String.class);
+//        String result = restTemplate.getForObject("http://postMicroservice/availableLetters", String.class);
+        String result = postMicroserviceFeignClient.getAvailableLetters();
         return ResponseEntity.ok().body(result);
     }
 

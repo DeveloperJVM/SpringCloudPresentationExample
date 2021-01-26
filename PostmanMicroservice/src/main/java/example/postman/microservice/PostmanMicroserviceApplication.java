@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableHystrix
+@EnableFeignClients
 public class PostmanMicroserviceApplication {
 
 	public static void main(String[] args) {
